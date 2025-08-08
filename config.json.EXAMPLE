@@ -1,0 +1,11 @@
+{
+  "adminRole": "Id da Role comum dos que podem configurar o bot",
+  "aprMemberRoleId": "ID do cardo de Cidadão",
+  "newMemberRoleId": "ID do cargo de Visitante",
+  "logChannel": "ID do canal de logs"
+  "corEmbed": "Coloque uma cor em REX ex: #000000",
+  "setImage": "Imagem do Bot",
+  "setBanner": "Banner do Bot",
+  "gifBan": "https://i.gifer.com/7Ork.gif",
+  "gitADV": "https://media.tenor.com/sLgNruA4tsgAAAAM/warning-lights.gif"
+}

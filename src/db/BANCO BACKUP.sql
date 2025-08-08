@@ -919,8 +919,8 @@ CREATE TABLE IF NOT EXISTS `vrp_stock_exchange` (
 
 -- Exportação de dados foi desmarcado.
 
--- Copiando estrutura para tabela starfinal.vrp_users
-CREATE TABLE IF NOT EXISTS `vrp_users` (
+-- Copiando estrutura para tabela starfinal.id_users
+CREATE TABLE IF NOT EXISTS `id_users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `steam` varchar(100) DEFAULT NULL,
   `deleted` int(1) DEFAULT 0,
@@ -949,7 +949,7 @@ CREATE TABLE IF NOT EXISTS `vrp_user_data` (
   `dkey` varchar(100) NOT NULL,
   `dvalue` text DEFAULT NULL,
   PRIMARY KEY (`user_id`,`dkey`),
-  CONSTRAINT `fk_user_data_users` FOREIGN KEY (`user_id`) REFERENCES `vrp_users` (`id`) ON DELETE CASCADE
+  CONSTRAINT `fk_user_data_users` FOREIGN KEY (`user_id`) REFERENCES `id_users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Exportação de dados foi desmarcado.
@@ -974,7 +974,7 @@ CREATE TABLE IF NOT EXISTS `vrp_user_identities` (
   PRIMARY KEY (`user_id`),
   KEY `registration` (`registration`),
   KEY `phone` (`phone`),
-  CONSTRAINT `fk_user_identities_users` FOREIGN KEY (`user_id`) REFERENCES `vrp_users` (`id`) ON DELETE CASCADE
+  CONSTRAINT `fk_user_identities_users` FOREIGN KEY (`user_id`) REFERENCES `id_users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Exportação de dados foi desmarcado.
@@ -985,7 +985,7 @@ CREATE TABLE IF NOT EXISTS `vrp_user_ids` (
   `user_id` int(11) DEFAULT NULL,
   KEY `identifier` (`identifier`),
   KEY `fk_user_ids_users` (`user_id`),
-  CONSTRAINT `fk_user_ids_users` FOREIGN KEY (`user_id`) REFERENCES `vrp_users` (`id`) ON DELETE CASCADE
+  CONSTRAINT `fk_user_ids_users` FOREIGN KEY (`user_id`) REFERENCES `id_users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Exportação de dados foi desmarcado.
@@ -995,7 +995,7 @@ CREATE TABLE IF NOT EXISTS `vrp_user_moneys` (
   `user_id` int(11) NOT NULL,
   `bank` int(11) DEFAULT NULL,
   PRIMARY KEY (`user_id`),
-  CONSTRAINT `fk_user_moneys_users` FOREIGN KEY (`user_id`) REFERENCES `vrp_users` (`id`) ON DELETE CASCADE
+  CONSTRAINT `fk_user_moneys_users` FOREIGN KEY (`user_id`) REFERENCES `id_users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Exportação de dados foi desmarcado.
