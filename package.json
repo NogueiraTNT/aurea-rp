@@ -1,0 +1,26 @@
+{
+  "name": "aurea-rp",
+  "version": "1.0.0",
+  "description": "Bot para adminsitração do discord Aurea RP",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NogueiraTNT/aurea-rp.git"
+  },
+  "author": "Nogueira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NogueiraTNT/aurea-rp/issues"
+  },
+  "homepage": "https://github.com/NogueiraTNT/aurea-rp#readme",
+  "dependencies": {
+    "discord.js": "^14.21.0",
+    "dotenv": "^17.2.1",
+    "fivem-js": "^1.5.2",
+    "mysql2": "^3.14.3",
+    "nodemon": "^3.1.10"
+  }
+}
