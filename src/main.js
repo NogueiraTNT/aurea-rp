@@ -24,7 +24,7 @@ client.commands = new Collection();
 client.aliases = new Collection();
 client.slash = new Collection();
 
-client.login(ProcessingInstruction.env.TOKEN_BOT);
+client.login(process.env.TOKEN_BOT);
 
 fs.readdir("./src/events/", (err, eventosPath) => {
   eventosPath.forEach((f) => {
