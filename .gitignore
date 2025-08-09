@@ -1,3 +1,11 @@
 node_modules
 .env
 config.json
+desktop.ini
+src/db/desktop.ini
+src/botUilts/desktop.ini
+src/events/desktop.ini
+src/slashCommands/desktop.ini
+src/slashCommands/admin/desktop.ini
+src/slashCommands/utils/desktop.ini
+src/desktop.ini
