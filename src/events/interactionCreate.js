@@ -8,7 +8,7 @@ const {
 } = require("discord.js");
 const db = require("../db/db");
 
-module.exports = async (Client, interaction) => {
+module.exports = async (client, interaction) => {
   if (interaction.isCommand()) {
     const slashCmd = client.slash.get(interaction.commandName);
     if (!slashCmd) return interaction.reply({ content: "Ocorreu um erro." });
@@ -41,7 +41,7 @@ module.exports = async (Client, interaction) => {
   if (interaction.isButton() && interaction.customId === "al_request") {
     const modal = new ModalBuilder()
       .setCustomId("al_modal")
-      .setTitle("Solicitação de Whitelist");
+      .setTitle("Solicitação de whitelisted");
 
     const idInput = new TextInputBuilder()
       .setCustomId("player_id")
@@ -55,9 +55,9 @@ module.exports = async (Client, interaction) => {
       .setStyle(TextInputStyle.Short)
       .setRequired(true);
 
-    const secondRow = new ActionRowBuilder().addComponents(idInput, nameInput);
-
-    modal.addComponents(secondRow);
+    const secondRow = new ActionRowBuilder().addComponents(idInput);
+    const finishRow = new ActionRowBuilder().addComponents(nameInput);
+    modal.addComponents(secondRow, finishRow);
     await interaction.showModal(modal);
     return;
   }
@@ -65,7 +65,7 @@ module.exports = async (Client, interaction) => {
   if (interaction.isModalSubmit() && interaction.customId === "al_modal") {
     const id = interaction.fields.getTextInputValue("player_id");
     const nameInput = interaction.fields.getTextInputValue("player_name");
-
+    console.log(id)
     const memberRole = interaction.guild.roles.cache.get(
       config.aprMemberRoleId
     );
@@ -84,15 +84,15 @@ module.exports = async (Client, interaction) => {
         [id]
       );
       if (results.length > 0) {
-        const whitelist = results[0].whitelist;
-        if (whitelist == 0) {
+        const whitelisted = results[0].whitelisted;
+        if (whitelisted == 0) {
           await interaction.member.roles.add(memberRole);
           await interaction.member.roles.remove(memberRoleR);
           const userid = interaction.member.id;
 
           await db.execute(
-            "UPDATE id_users SET whitelist = ?, discord = ? WHERE id = ?",
-            [1, userid, id]
+            "UPDATE id_users SET whitelisted = ? WHERE id = ?",
+            [1, id]
           );
 
           const logChannel = interaction.guild.channels.cache.get(
@@ -101,7 +101,7 @@ module.exports = async (Client, interaction) => {
           if (logChannel) {
             const embed = new EmbedBuilder()
               .setTitle("✅ Nova WL Liberada")
-              .setDescription("Uma nova whitelist foi enviada com sucesso.")
+              .setDescription("Uma nova whitelisted foi enviada com sucesso.")
               .addFields(
                 { name: "Jogador", value: `<@${userid}>` },
                 { name: "Licença do Jogador", value: `\`\`\`${id}\`\`\`` }
@@ -113,12 +113,12 @@ module.exports = async (Client, interaction) => {
           }
           // await interaction.member.setNickname(`${name} #${id}`);
           return interaction.reply({
-            content: `✅ Sua whitelist foi aprovada! Bem-vindo(a), **${id}**!`,
+            content: `✅ Sua whitelisted foi aprovada! Bem-vindo(a), **${id}**!`,
             ephemeral: true,
           });
         } else {
           return interaction.reply({
-            content: `💢 Sua whitelist foi recusada!`,
+            content: `💢 Sua whitelisted foi recusada!`,
             ephemeral: true,
           });
         }
@@ -127,7 +127,7 @@ module.exports = async (Client, interaction) => {
       console.error("Erro ao alterar o apelido:", error);
       return interaction.reply({
         content:
-          "Ocorreu um erro ao configurar sua whitelist. Certifique-se de que o bot tenha permissões suficientes.",
+          "Ocorreu um erro ao configurar sua whitelisted. Certifique-se de que o bot tenha permissões suficientes.",
         ephemeral: true,
       });
     }
