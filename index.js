@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const { execSync } = require("child_process");
 
 try {
@@ -27,9 +26,6 @@ try {
 
 // Carrega o resto do bot
 require("dotenv").config();
-=======
-require('dotenv').config();
->>>>>>> 96555b0a75c7e85890e0888e94fe7b4c58d96275
 require("./src/main.js");
 require("./src/botUtils/antiCrash.js");
 console.log("🎾 | [Anti-Crash] Carregado com sucesso.");
